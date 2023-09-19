@@ -16,7 +16,7 @@
                         <a href="" class="text-muted">Kelola Data &nbsp;</a>
                     </li>
                     <li class="breadcrumb-item text-muted">
-                        <a href="" class="text-muted">Manajemen Jurusan &nbsp;</a>
+                        <a href="" class="text-muted">Jurusan &nbsp;</a>
                     </li>
                 </ul>
                 <!--end::Breadcrumb-->
@@ -29,45 +29,186 @@
 </div>
 @endsection
 @section('content')
-<div class="card card-flush">
-    <div class="card-header align-items-center py-5 gap-2 gap-md-5">
-        <div class="card-title">
-            <div class="d-flex align-items-center position-relative my-1">
-                <span class="svg-icon svg-icon-1 position-absolute ms-4">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1"
-                            transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
-                        <path
-                            d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                            fill="currentColor" />
-                    </svg>
-                </span>
-                <input type="search" name="search" class="form-control form-control-solid w-350px ps-15" id="search"
-                    placeholder="Cari.." />
+<hr class="mt-0">
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card card-flush">
+            <div class="card-header">
+                <div class="card-toolbar flex-row-fluid justify-content-start gap-5">
+                    <button type="button" id="addButton" class="btn btn-active-primary btn-primary ms-2"
+                        data-bs-toggle="modal" data-bs-target="#kt_modal_1">
+                        <span class="svg-icon svg-icon-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1"
+                                    transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
+                                <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"></rect>
+                            </svg></span>
+                        Tambah
+                    </button>
+                </div>
+            </div>
+            <div class="card-body fs-6 text-gray-700">
+                <table id="table" class="table align-middle table-row-dashed fs-6 gy-5">
+                    <thead>
+                        <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+                            <th>ID</th>
+                            <th>Nama Jurusan</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="fw-semibold fs-7 text-gray-600">
+                        @foreach ($jurusan as $item)
+                        <tr class="text-start">
+                            <td>{{$item->id}}</td>
+                            <td>{{$item->nama}}</td>
+                            <td>
+                                <div class="dropdown text-start">
+                                    <button type="button"
+                                        class="btn btn-secondary btn-sm btn-active-light-primary rotate opacity-50"
+                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start">
+                                        Actions
+                                        <span class="svg-icon svg-icon-3 rotate-180 ms-3 me-0">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
+                                                    fill="currentColor"></path>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                    <!--begin::Menu-->
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-auto min-w-200 mw-300px"
+                                        data-kt-menu="true">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <button class="menu-link px-3 edit" data-id="{{$item->id}}"
+                                                data-bs-toggle="modal" data-bs-target="#kt_modal_2">
+                                                Edit Jurusan
+                                            </button>
+                                        </div>
+                                        <!--end::Menu item-->
+
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3">
+                                                Lihat Prodi
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+
+                                        <!--begin::Menu separator-->
+                                        <div class="separator mb-3 opacity-75"></div>
+                                        <!--end::Menu separator-->
+
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3">
+                                                Hapus
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                    </div>
+                                    <!--end::Menu-->
+                                </div>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <div class="card-body fs-6 text-gray-700">
-        <table id="harvest-table" class="table align-middle table-row-dashed fs-6 gy-5">
-            <thead>
-                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                    <th>Nama Kolam</th>
-                    <th>Nama Komoditas</th>
-                    <th>Jumlah Bibit</th>
-                    <th>Tanggal Tebar Bibit</th>
-                    <th>Berat Bibit</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody class="fw-semibold fs-7 text-gray-600">
-            </tbody>
-        </table>
+</div>
+<div class="modal fade" tabindex="-1" id="kt_modal_1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{route('jurusan.store')}}" method="post">
+                @csrf
+                <div class="modal-header">
+                    <h3 class="modal-title">Tambah Jurusan</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <Label class="form-label required fs-6 fw-bold mt-2 mb-3">Nama Jurusan</Label>
+                    <input type="text" class="form-control" name="nama" id="nama" placeholder="Masukkan nama jurusan"
+                        value="{{old('name')}}" required>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="kt_modal_2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="#" class="update" method="post">
+                @csrf
+                @method('PUT')
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Jurusan</h3>
+
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                        aria-label="Close">
+                        <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body">
+                    <Label class="form-label required fs-6 fw-bold mt-2 mb-3">Nama Jurusan</Label>
+                    <input type="text" class="form-control" name="edit_nama" id="edit_nama" placeholder="Masukkan nama jurusan"
+                        value="{{old('name')}}" required>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 @endsection
 @push('scripts')
 <script>
+    // datatable
+    $("#table").DataTable({
+        "searching": true,
+        "ordering": true,
+        "info": false,
+        "autoWidth": false,
+        "responsive": true,
+    });
 
+        $(".edit").on("click", function() {
+            // Mendapatkan nilai data-id dari elemen yang diklik
+            var dataId = $(this).data("id");
+            var modal = $('#kt_modal_2');
+            var form = modal.find("form");
+            
+            // Melakukan tindakan sesuai dengan nilai data-id
+            var url = '{{route("jurusan.edit", ":id")}}';
+            var url_action = '{{route("jurusan.update", ":id")}}';
+            url = url.replace(":id", dataId);
+            url_action = url_action.replace(":id", dataId);
+            form.attr("action", url_action);
+
+            $.getJSON(url, function(response) {
+                $('#edit_nama').val(response.nama_jurusan);
+            });
+        });
 </script>
 @endpush

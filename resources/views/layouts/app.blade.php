@@ -29,6 +29,7 @@
             type="text/css" />
         <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
         @yield('styles')
     </head>
 
@@ -108,6 +109,7 @@
         <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
         <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
         <script src="{{asset('assets/js/my_scripts.js')}}"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
         @stack('scripts')
     </body>
 </html>

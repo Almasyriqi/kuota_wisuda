@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jurusan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class JurusanController extends Controller
 {
@@ -11,7 +13,8 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        return view('pages.jurusan');
+        $jurusan = Jurusan::all();
+        return view('pages.jurusan', compact('jurusan'));
     }
 
     /**
@@ -19,7 +22,7 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -27,7 +30,20 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|string',
+        ]);
+    
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        $jurusan = new Jurusan();
+        $jurusan->nama = strtoupper($request->nama);
+        $jurusan->save();
+
+        return redirect()->route('jurusan.index')->with('success', 'Berhasil menambahkan jurusan baru');
     }
 
     /**
@@ -43,7 +59,8 @@ class JurusanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $jurusan = Jurusan::find($id);
+        return response()->json(['nama_jurusan' => $jurusan->nama]);
     }
 
     /**
@@ -51,7 +68,21 @@ class JurusanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'edit_nama' => 'required|string',
+        ]);
+    
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $jurusan = Jurusan::find($id);
+        $jurusan->nama = strtoupper($request->edit_nama);
+        $jurusan->save();
+
+        return redirect()->route('jurusan.index')->with('success', 'Berhasil update data jurusan');
     }
 
     /**

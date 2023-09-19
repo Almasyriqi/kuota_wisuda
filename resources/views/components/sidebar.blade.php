@@ -92,8 +92,8 @@
                     </a>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link {{ Route::is('commodity.*') ? 'active' : '' }}" href="
-                                    {{-- {{ route('commodity.index') }} --}}
+                    <a class="menu-link {{ Route::is('jurusan.*') ? 'active' : '' }}" href="
+                                    {{ route('jurusan.index') }}
                                     ">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
