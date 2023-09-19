@@ -73,7 +73,7 @@
                 {{-- Admin --}}
                 <div class="menu-item">
                     <a class="menu-link {{ Route::is('wisuda.*') ? 'active' : '' }}" href="
-                                    {{-- {{ route('user.index') }} --}}
+                                    {{ route('wisuda.index') }}
                                     ">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">

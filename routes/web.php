@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\KuotaProdiController;
 use App\Http\Controllers\ProdiController;
+use App\Http\Controllers\WisudaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +23,5 @@ Route::get('/', function () {
 
 Route::resource('jurusan', JurusanController::class);
 Route::resource('prodi', ProdiController::class);
+Route::resource('wisuda', WisudaController::class);
+Route::resource('kuota_prodi', KuotaProdiController::class);
