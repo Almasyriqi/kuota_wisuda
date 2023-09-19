@@ -91,7 +91,7 @@
 
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3">
+                                            <a href="{{route('prodi.index', ['jurusan_id'=>$item->id])}}" class="menu-link px-3">
                                                 Lihat Prodi
                                             </a>
                                         </div>

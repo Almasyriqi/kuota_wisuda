@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gelombang;
 use Illuminate\Http\Request;
 
 class WisudaController extends Controller
@@ -11,7 +12,8 @@ class WisudaController extends Controller
      */
     public function index()
     {
-        //
+        $gelombang = Gelombang::orderby('id', 'desc')->get();
+        return view('pages.wisuda', compact('gelombang'));
     }
 
     /**
