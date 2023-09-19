@@ -3,13 +3,13 @@
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <a href="
-        {{ route('home') }}
+        {{-- {{ route('home') }} --}}
         ">
             <img alt="Logo"
-                src="{{ isset($setting->logo_default) ? asset('storage/' . $setting->logo_default) : asset('assets/images/logo_text.svg') }}"
+                src="{{ isset($setting->logo_default) ? asset('storage/' . $setting->logo_default) : asset('assets/images/Logo-Polinema.png') }}"
                 class="h-50px app-sidebar-logo-default" />
             <img alt="Logo"
-                src="{{ isset($setting->logo_square) ? asset('storage/' . $setting->logo_square) : asset('assets/images/logo.svg') }}"
+                src="{{ isset($setting->logo_square) ? asset('storage/' . $setting->logo_square) : asset('assets/images/Logo-Polinema.png') }}"
                 class="h-30px app-sidebar-logo-minimize" />
         </a>
         <div id="kt_app_sidebar_toggle"
@@ -38,7 +38,7 @@
 
                 {{-- Dashboard --}}
                 <div class="menu-item">
-                    <a href="{{route('home')}}" class="menu-link {{ request()->is(['home*']) ? 'active' : '' }}">
+                    <a href="#" class="menu-link {{ request()->is(['home*']) ? 'active' : '' }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -71,10 +71,9 @@
                     </div>
                 </div>
                 {{-- Admin --}}
-                @if (Auth::user()->role == 1)
                 <div class="menu-item">
                     <a class="menu-link {{ Route::is('user.*') ? 'active' : '' }}" href="
-                                    {{ route('user.index') }}
+                                    {{-- {{ route('user.index') }} --}}
                                     ">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -94,7 +93,7 @@
                 </div>
                 <div class="menu-item">
                     <a class="menu-link {{ Route::is('commodity.*') ? 'active' : '' }}" href="
-                                    {{ route('commodity.index') }}
+                                    {{-- {{ route('commodity.index') }} --}}
                                     ">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -189,11 +188,10 @@
                         <span class="menu-title">Kelola Komoditas</span>
                     </a>
                 </div>
-                @else
                 {{-- Mitra Panen --}}
                 <div class="menu-item">
                     <a class="menu-link {{ Route::is('commodity.*') ? 'active' : '' }}" href="
-                                    {{ route('commodity.index') }}
+                                    {{-- {{ route('commodity.index') }} --}}
                                     ">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -290,7 +288,7 @@
                 </div>
                 <div class="menu-item">
                     <a class="menu-link {{ Route::is('pond.*') ? 'active' : '' }}" href="
-                                    {{ route('pond.index') }}
+                                    {{-- {{ route('pond.index') }} --}}
                                     ">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -310,7 +308,7 @@
                 </div>
                 <div class="menu-item">
                     <a class="menu-link {{ Route::is('harvest.*') ? 'active' : '' }}" href="
-                                    {{ route('harvest.index') }}
+                                    {{-- {{ route('harvest.index') }} --}}
                                     ">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -334,79 +332,12 @@
                         <span class="menu-title">Kelola Budidaya</span>
                     </a>
                 </div>
-                @endif
 
                 <hr>
-
-                @if (Auth::user()->role == 1)
-                {{-- Learning Model --}}
-                <div class="menu-item">
-                    <div class="menu-content pt-5 pb-2">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Model Regresi</span>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('learning.model.train') ? 'active' : '' }}" href="
-                            {{ route('learning.model.train') }}
-                            ">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-2">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M4 2.33366V7.33366C4 8.25413 4.74619 9.00033 5.66667 9.00033H15.6667C16.5871 9.00033 17.3333 8.25413 17.3333 7.33366V2.33366C17.3333 1.41318 16.5871 0.666992 15.6667 0.666992H5.66667C4.74619 0.666992 4 1.41318 4 2.33366Z"
-                                        fill="#E3E4EA" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M13.5223 5.98619C13.8061 6.18267 13.8769 6.57201 13.6804 6.85581L9.57462 11.953L8.54688 11.2415L12.6526 6.1443C12.8491 5.8605 13.2385 5.78971 13.5223 5.98619Z"
-                                        fill="#A1A5B7" />
-                                    <circle cx="3.16667" cy="6.50065" r="1.66667" fill="#A1A5B7" />
-                                    <path
-                                        d="M5.66602 11.5V11.9167L8.36835 10.5C8.94245 10.1347 9.70481 10.3147 10.0549 10.8982C10.3942 11.4636 10.218 12.1967 9.6588 12.5462L6.3029 14.3311C6.10222 14.4565 5.88552 14.5339 5.66602 14.5666V16.3333C5.66602 16.8856 5.2183 17.3333 4.66602 17.3333H1.66602C1.11373 17.3333 0.666016 16.8856 0.666016 16.3333V11.5C0.666016 10.1193 1.7853 9 3.16602 9C4.54673 9 5.66602 10.1193 5.66602 11.5Z"
-                                        fill="#A1A5B7" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M6.70703 4C6.70703 3.65482 6.98685 3.375 7.33203 3.375L13.9987 3.375C14.3439 3.375 14.6237 3.65482 14.6237 4C14.6237 4.34518 14.3439 4.625 13.9987 4.625L7.33203 4.625C6.98685 4.625 6.70703 4.34518 6.70703 4Z"
-                                        fill="#A1A5B7" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M6.70703 6.5C6.70703 6.15482 6.98685 5.875 7.33203 5.875L10.6654 5.875C11.0105 5.875 11.2904 6.15482 11.2904 6.5C11.2904 6.84518 11.0105 7.125 10.6654 7.125L7.33203 7.125C6.98685 7.125 6.70703 6.84518 6.70703 6.5Z"
-                                        fill="#A1A5B7" />
-                                </svg>
-                            </span>
-                        </span>
-                        <span class="menu-title">Implementasi Model</span>
-                    </a>
-                </div>
-                <div class="menu-item">
-                    <a class="menu-link {{ Route::is('learning.model.test') ? 'active' : '' }}" href="
-                            {{ route('learning.model.test') }}
-                            ">
-                        <span class="menu-icon">
-                            <span class="svg-icon svg-icon-2">
-                                <svg width="22" height="24" viewBox="0 0 22 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M8.33533 17.0064L5.67074 22.3356C5.4855 22.7061 5.03499 22.8562 4.66451 22.671C4.29403 22.4858 4.14386 22.0352 4.3291 21.6648L6.65855 17.0059L8.33533 17.0064ZM17.3416 17.0064L19.6707 21.6648C19.856 22.0352 19.7058 22.4858 19.3353 22.671C18.9648 22.8562 18.5143 22.7061 18.3291 22.3356L15.6645 17.0064C15.6645 17.0064 17.2783 17.0064 17.3416 17.0064ZM12.7499 17.0064V20.0002C12.7499 20.4144 12.4141 20.7502 11.9999 20.7502C11.5857 20.7502 11.2499 20.4144 11.2499 20.0002V17.0064H12.7499Z"
-                                        fill="currentColor" />
-                                    <path opacity="0.4"
-                                        d="M22 14C22 15.6569 20.6569 17 19 17L5 17C3.34314 17 2 15.6569 2 14L2 5C2 3.34315 3.34315 2 5 2L19 2C20.6569 2 22 3.34315 22 5L22 14Z"
-                                        fill="currentColor" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M6.25 7C6.25 6.58579 6.58579 6.25 7 6.25H17C17.4142 6.25 17.75 6.58579 17.75 7C17.75 7.41421 17.4142 7.75 17 7.75H7C6.58579 7.75 6.25 7.41421 6.25 7Z"
-                                        fill="currentColor" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                        d="M6.25 12C6.25 11.5858 6.58579 11.25 7 11.25H12C12.4142 11.25 12.75 11.5858 12.75 12C12.75 12.4142 12.4142 12.75 12 12.75H7C6.58579 12.75 6.25 12.4142 6.25 12Z"
-                                        fill="currentColor" />
-                                </svg>
-                            </span>
-                        </span>
-                        <span class="menu-title">Pengujian Model</span>
-                    </a>
-                </div>
-                <hr>
-                @endif
             </div>
         </div>
     </div>
-    <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_footer">
+    {{-- <div class="app-sidebar-footer flex-column-auto pt-2 pb-6 px-6" id="kt_app_sidebar_footer">
         <form action="
         {{ route('logout') }}
         " method="POST" id="logout-form">
@@ -425,5 +356,5 @@
                 </span>
             </a>
         </form>
-    </div>
+    </div> --}}
 </div>
