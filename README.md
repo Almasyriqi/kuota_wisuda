@@ -125,6 +125,11 @@ php artisan test
 | `Gelombang` | Data gelombang wisuda (tanggal, jenis, total kuota) |
 | `gelombang_prodi` | Tabel pivot alokasi kuota tiap `Prodi` pada suatu `Gelombang` |
 
+## Dokumentasi
+
+Dokumentasi teknis lebih lengkap (SRS, daftar fitur, dan flow map) tersedia
+di folder [`docs/`](./docs/README.md).
+
 ## Lisensi
 
 Project ini menggunakan framework Laravel yang open-sourced dengan lisensi [MIT](https://opensource.org/licenses/MIT).
